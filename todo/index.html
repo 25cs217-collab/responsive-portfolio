@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskStream | Interactive To-Do & State Management</title>
+    <meta name="description" content="A state-driven interactive To-Do application featuring full CRUD, local persistence, category/priority tagging, and dynamic list filters.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-background">
+        <!-- Ambient background glows -->
+        <div class="bg-glow glow-blue"></div>
+        <div class="bg-glow glow-purple"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="app-container">
+        <!-- App Header -->
+        <header class="app-header">
+            <div class="app-title-wrapper">
+                <div class="logo-icon">
+                    <i data-lucide="check-square"></i>
+                </div>
+                <div>
+                    <h1 class="app-title">TaskStream</h1>
+                    <p class="app-subtitle">Manage your daily flow</p>
+                </div>
+            </div>
+            
+            <!-- Quick Stats Summary -->
+            <div class="stats-summary" id="stats-summary">
+                <div class="summary-pill">
+                    <span class="pill-value" id="total-count">0</span>
+                    <span class="pill-label">Total</span>
+                </div>
+                <div class="summary-pill highlight">
+                    <span class="pill-value" id="completed-count">0</span>
+                    <span class="pill-label">Done</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Todo Card Wrapper -->
+        <section class="todo-card">
+            <!-- Search & Controls Grid -->
+            <div class="controls-panel">
+                <div class="search-wrapper">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search tasks by name or tag...">
+                    <button id="clear-search-btn" class="clear-search-btn" title="Clear search" aria-label="Clear search">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                
+                <!-- Quick Filter Selectors -->
+                <div class="filter-controls">
+                    <div class="filter-tabs" role="tablist">
+                        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+                        <button class="filter-tab" data-filter="active" role="tab" aria-selected="false">Active</button>
+                        <button class="filter-tab" data-filter="completed" role="tab" aria-selected="false">Completed</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Creation Form -->
+            <form id="todo-form" class="todo-form" novalidate>
+                <div class="form-main-row">
+                    <div class="input-container">
+                        <input type="text" id="todo-input" placeholder="What needs to be done?..." required>
+                        <span class="form-error-msg" id="input-error">Task description cannot be empty</span>
+                    </div>
+                    <button type="submit" class="add-task-btn" aria-label="Add task">
+                        <i data-lucide="plus"></i>
+                        <span>Add Task</span>
+                    </button>
+                </div>
+                
+                <!-- Advanced Meta Options -->
+                <div class="form-meta-row">
+                    <!-- Category Selector -->
+                    <div class="meta-group">
+                        <label for="todo-category"><i data-lucide="tag"></i> Category</label>
+                        <select id="todo-category" name="category">
+                            <option value="work">💼 Work</option>
+                            <option value="personal" selected>🏠 Personal</option>
+                            <option value="shopping">🛒 Shopping</option>
+                            <option value="health">❤️ Health</option>
+                        </select>
+                    </div>
+
+                    <!-- Priority Selector -->
+                    <div class="meta-group">
+                        <label for="todo-priority"><i data-lucide="flag"></i> Priority</label>
+                        <select id="todo-priority" name="priority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+
+                    <!-- Due Date Picker -->
+                    <div class="meta-group">
+                        <label for="todo-date"><i data-lucide="calendar"></i> Due Date</label>
+                        <input type="date" id="todo-date" name="dueDate">
+                    </div>
+                </div>
+            </form>
+
+            <!-- Progress Indicator bar -->
+            <div class="progress-container">
+                <div class="progress-text-row">
+                    <span>Task Completion</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Tasks List Container -->
+            <div class="list-wrapper">
+                <ul id="todo-list" class="todo-list" aria-label="Tasks List">
+                    <!-- Task Items will be injected dynamically -->
+                </ul>
+
+                <!-- Empty State Placeholder -->
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-state-icon">
+                        <i data-lucide="clipboard-list"></i>
+                    </div>
+                    <h3>No tasks found</h3>
+                    <p>Add a new task above or adjust your search filters to get started.</p>
+                </div>
+            </div>
+
+            <!-- List Footer Stats -->
+            <footer class="card-footer">
+                <span class="tasks-left" id="tasks-left">0 active tasks left</span>
+                <button id="clear-completed-btn" class="clear-completed-btn" aria-label="Clear all completed tasks">
+                    <i data-lucide="trash-2"></i>
+                    <span>Clear Completed</span>
+                </button>
+            </footer>
+        </section>
+
+        <!-- Back to Portfolio link -->
+        <div class="back-link-wrapper">
+            <a href="../index.html" class="back-link">
+                <i data-lucide="arrow-left"></i>
+                <span>Back to Developer Portfolio</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

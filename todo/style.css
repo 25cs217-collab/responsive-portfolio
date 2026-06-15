@@ -1,0 +1,965 @@
+/* ==========================================================================
+   DESIGN SYSTEM & VARIABLES
+   ========================================================================== */
+:root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Theme Colors (Dark-cyberpunk theme) */
+    --bg-primary: #070a13;
+    --card-bg: rgba(15, 23, 42, 0.75);
+    --card-border: rgba(255, 255, 255, 0.08);
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    /* Neon Accents */
+    --accent-blue: #3b82f6;
+    --accent-purple: #a855f7;
+    --accent-emerald: #10b981;
+    --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #a855f7 100%);
+    
+    /* Category Colors */
+    --color-work: #3b82f6;
+    --color-personal: #a855f7;
+    --color-shopping: #f59e0b;
+    --color-health: #ec4899;
+    
+    /* Priority Colors */
+    --color-priority-low: #10b981;
+    --color-priority-medium: #f59e0b;
+    --color-priority-high: #ef4444;
+    
+    /* UI Values */
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 24px;
+    --border-radius-circle: 50%;
+    
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    --glow-blue: rgba(59, 130, 246, 0.15);
+    --glow-purple: rgba(168, 85, 247, 0.15);
+}
+
+/* ==========================================================================
+   RESET & UTILITY BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+/* Background Ambient Glow Layout */
+.app-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bg-glow {
+    position: absolute;
+    border-radius: var(--border-radius-circle);
+    filter: blur(120px);
+    opacity: 0.5;
+}
+
+.glow-blue {
+    width: 400px;
+    height: 400px;
+    background-color: var(--accent-blue);
+    top: -100px;
+    left: -100px;
+}
+
+.glow-purple {
+    width: 500px;
+    height: 500px;
+    background-color: var(--accent-purple);
+    bottom: -150px;
+    right: -150px;
+}
+
+/* Main Container width styling */
+.app-container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+/* ==========================================================================
+   APP HEADER
+   ========================================================================== */
+.app-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.app-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: var(--border-radius-md);
+    background: var(--accent-gradient);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.logo-icon i {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.app-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.app-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Top Quick Stats layout */
+.stats-summary {
+    display: flex;
+    gap: 1rem;
+}
+
+.summary-pill {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.summary-pill.highlight {
+    border-color: var(--accent-emerald);
+}
+
+.pill-value {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent-blue);
+}
+
+.summary-pill.highlight .pill-value {
+    color: var(--accent-emerald);
+}
+
+.pill-label {
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   MAIN CARD WRAPPER
+   ========================================================================== */
+.todo-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+/* Controls Grid */
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+    background-color: rgba(7, 10, 19, 0.4);
+}
+
+/* Search Box design */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--text-muted);
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 2.75rem;
+    background-color: rgba(7, 10, 19, 0.6);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--text-primary);
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.search-wrapper input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search-btn:hover {
+    color: var(--text-primary);
+}
+
+.clear-search-btn.active {
+    display: flex;
+}
+
+.clear-search-btn i {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+/* Filter control tabs */
+.filter-tabs {
+    display: flex;
+    background-color: rgba(7, 10, 19, 0.5);
+    border: 1px solid var(--card-border);
+    padding: 0.25rem;
+    border-radius: var(--border-radius-sm);
+}
+
+.filter-tab {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.filter-tab:hover {
+    color: var(--text-primary);
+}
+
+.filter-tab.active {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   TASK CREATION FORM
+   ========================================================================== */
+.todo-form {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.form-main-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.todo-form input[type="text"] {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    background-color: rgba(7, 10, 19, 0.5);
+    border: 1px solid var(--input-border, var(--card-border));
+    border-radius: var(--border-radius-sm);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.todo-form input[type="text"]:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.form-error-msg {
+    display: none;
+    color: var(--color-priority-high);
+    font-size: 0.775rem;
+    margin-top: 0.35rem;
+    position: absolute;
+    bottom: -1.2rem;
+    left: 0.25rem;
+}
+
+.input-container.has-error input {
+    border-color: var(--color-priority-high);
+}
+
+.input-container.has-error .form-error-msg {
+    display: block;
+}
+
+.add-task-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 10px rgba(168, 85, 247, 0.2);
+}
+
+.add-task-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(168, 85, 247, 0.35);
+    filter: brightness(1.08);
+}
+
+.add-task-btn:active {
+    transform: translateY(0);
+}
+
+.add-task-btn i {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+/* Advanced Meta Inputs: Grid on desktop */
+.form-meta-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.meta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.meta-group label {
+    font-size: 0.775rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.meta-group label i {
+    width: 0.85rem;
+    height: 0.85rem;
+    color: var(--accent-purple);
+}
+
+.meta-group select, .meta-group input[type="date"] {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background-color: rgba(7, 10, 19, 0.5);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.meta-group select:focus, .meta-group input[type="date"]:focus {
+    border-color: var(--accent-purple);
+}
+
+/* ==========================================================================
+   PROGRESS INDICATOR BAR
+   ========================================================================== */
+.progress-container {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+    background-color: rgba(15, 23, 42, 0.2);
+}
+
+.progress-text-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.775rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+#progress-percentage {
+    color: var(--accent-emerald);
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(7, 10, 19, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-emerald));
+    border-radius: 10px;
+    transition: width var(--transition-medium) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   TASKS LIST CONTAINER
+   ========================================================================== */
+.list-wrapper {
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Individual Task Row Item */
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all var(--transition-medium) ease;
+    animation: taskEnter var(--transition-medium) ease forwards;
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-item:hover {
+    background-color: rgba(255, 255, 255, 0.015);
+}
+
+/* Task Checkbox Alignment */
+.todo-item-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+    min-width: 0; /* Enable text truncation */
+}
+
+/* Custom Checkbox Design */
+.todo-checkbox-wrapper {
+    position: relative;
+    width: 1.35rem;
+    height: 1.35rem;
+    flex-shrink: 0;
+}
+
+.todo-checkbox-wrapper input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(7, 10, 19, 0.5);
+    border: 2px solid var(--text-muted);
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkmark::after {
+    content: "";
+    width: 0.35rem;
+    height: 0.6rem;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform var(--transition-fast) ease;
+    margin-bottom: 2px;
+}
+
+.todo-checkbox-wrapper input:checked ~ .checkmark {
+    background-color: var(--accent-emerald);
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.todo-checkbox-wrapper input:checked ~ .checkmark::after {
+    transform: rotate(45deg) scale(1);
+}
+
+/* Task Body Content */
+.todo-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.todo-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+/* Completed Task styling */
+.todo-item.completed {
+    background-color: rgba(255, 255, 255, 0.005);
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* Inline Edit Input Box */
+.edit-todo-input {
+    width: 95%;
+    padding: 0.35rem 0.75rem;
+    background-color: rgba(7, 10, 19, 0.8);
+    border: 1px solid var(--accent-blue);
+    border-radius: var(--border-radius-sm);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+/* Task Tags & Badges wrapper (Flexbox) */
+.todo-tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.todo-badge {
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Category Badge Dot Styling */
+.badge-category {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+}
+
+.category-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--border-radius-circle);
+    display: inline-block;
+}
+
+.category-dot.work { background-color: var(--color-work); }
+.category-dot.personal { background-color: var(--color-personal); }
+.category-dot.shopping { background-color: var(--color-shopping); }
+.category-dot.health { background-color: var(--color-health); }
+
+/* Priority Badges */
+.badge-priority-low {
+    background-color: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: var(--color-priority-low);
+}
+
+.badge-priority-medium {
+    background-color: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    color: var(--color-priority-medium);
+}
+
+.badge-priority-high {
+    background-color: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--color-priority-high);
+}
+
+/* Due Date Badge styling */
+.badge-date {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+}
+
+.badge-date.overdue {
+    background-color: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--color-priority-high);
+}
+
+.badge-date i {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+/* Task Actions (Buttons Alignment) */
+.todo-item-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    flex-shrink: 0;
+}
+
+.action-btn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    color: var(--text-muted);
+    transition: all var(--transition-fast);
+}
+
+.action-btn:hover {
+    color: var(--text-primary);
+}
+
+.action-btn.edit-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.action-btn.delete-btn:hover {
+    border-color: var(--color-priority-high);
+    color: var(--color-priority-high);
+    background-color: rgba(239, 68, 68, 0.04);
+}
+
+.action-btn i {
+    width: 0.95rem;
+    height: 0.95rem;
+}
+
+/* ==========================================================================
+   EMPTY STATE CONTAINER
+   ========================================================================== */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    display: none; /* Hidden by default */
+}
+
+.empty-state.active {
+    display: flex;
+}
+
+.empty-state-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: var(--border-radius-circle);
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.empty-state-icon i {
+    width: 2rem;
+    height: 2rem;
+}
+
+.empty-state h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    max-width: 280px;
+}
+
+/* ==========================================================================
+   CARD FOOTER
+   ========================================================================== */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--card-border);
+    background-color: rgba(7, 10, 19, 0.4);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.clear-completed-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.clear-completed-btn:hover {
+    color: var(--color-priority-high);
+}
+
+.clear-completed-btn i {
+    width: 0.95rem;
+    height: 0.95rem;
+}
+
+/* Back Link styling */
+.back-link-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+}
+
+.back-link:hover {
+    color: var(--accent-blue);
+}
+
+.back-link i {
+    width: 0.95rem;
+    height: 0.95rem;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION (SHARED STYLES)
+   ========================================================================== */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    background-color: rgba(15, 23, 42, 0.95);
+    color: var(--text-primary);
+    border-left: 4px solid var(--accent-blue);
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+    border-right: 1px solid var(--card-border);
+    box-shadow: var(--shadow-lg);
+    min-width: 280px;
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1), fadeOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) 4.2s forwards;
+    transform-origin: right bottom;
+}
+
+.toast-success { border-left-color: var(--accent-emerald); }
+.toast-error { border-left-color: var(--color-priority-high); }
+
+.toast-icon { flex-shrink: 0; }
+.toast-success .toast-icon { color: var(--accent-emerald); }
+.toast-error .toast-icon { color: var(--color-priority-high); }
+
+.toast-message {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   DYNAMIC KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes taskEnter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.todo-item.task-exit {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+    overflow: hidden;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN MEDIA QUERIES
+   ========================================================================== */
+
+/* --- Tablet Breakpoint (min-width: 576px) --- */
+@media (min-width: 576px) {
+    .app-container {
+        padding: 1rem;
+    }
+    
+    .app-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .controls-panel {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .search-wrapper {
+        flex: 1.4;
+    }
+    
+    .filter-controls {
+        flex: 1;
+    }
+    
+    .form-main-row {
+        flex-direction: row;
+    }
+    
+    .add-task-btn {
+        white-space: nowrap;
+    }
+    
+    .form-meta-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
