@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purushotham J | Creative Full-Stack Engineer Portfolio</title>
+    <meta name="description" content="Portfolio of Purushotham J, a Creative Full-Stack Engineer specializing in high-performance web applications, responsive architecture, and immersive user interfaces.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Theme Manager Script (Prevents FOUT) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#hero" class="logo" aria-label="Purushotham J - Home">
+                <span class="logo-accent">&lt;</span>Purushotham J<span class="logo-accent"> /&gt;</span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu" aria-label="Primary Navigation">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle visual theme" title="Toggle dark/light mode">
+                    <i data-lucide="moon" class="theme-icon moon-icon"></i>
+                    <i data-lucide="sun" class="theme-icon sun-icon"></i>
+                </button>
+                
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-menu-toggle" class="mobile-toggle-btn" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                    <i data-lucide="menu" class="menu-icon"></i>
+                    <i data-lucide="x" class="close-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-grid container">
+                <div class="hero-content fade-in-up">
+                    <span class="hero-subtitle">Welcome to my space</span>
+                    <h1 class="hero-title">
+                        Crafting Digital <span class="gradient-text">Masterpieces</span> With Clean Code
+                    </h1>
+                    <p class="hero-description">
+                        I am a full-stack developer passionate about building scalable, high-performance web systems and crafting visually stunning, responsive user interfaces. Let's build something extraordinary together.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>View Projects</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Get in Touch</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual fade-in-up delay-200">
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring"></div>
+                        <img src="assets/profile.png" alt="Purushotham J Profile" class="avatar-img">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Background Decorative Elements -->
+            <div class="hero-bg-glow glow-1"></div>
+            <div class="hero-bg-glow glow-2"></div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section section-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag">Biography</span>
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-description">A look into my background, technical expertise, and what drives my development workflow.</p>
+                </div>
+                
+                <div class="about-grid">
+                    <!-- Bio & Stats -->
+                    <div class="about-bio-container fade-in-up">
+                        <div class="bio-card">
+                            <h3>Who I Am</h3>
+                            <p>
+                                Based in India, I am a software engineer focused on developing modern responsive applications. I combine computer science concepts with creative layout structures to build interfaces that are both aesthetically remarkable and highly accessible.
+                            </p>
+                            <p>
+                                I work closely with client requirements, translating business ideas into robust database schemas and lightning-fast frontend visual architectures.
+                            </p>
+                        </div>
+                        
+                        <!-- Statistics Grid (CSS Grid) -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-number">2+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">20+</span>
+                                <span class="stat-label">Projects Completed</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">12+</span>
+                                <span class="stat-label">Happy Clients</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">99%</span>
+                                <span class="stat-label">Success Rate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills & Focus Area -->
+                    <div class="skills-container fade-in-up delay-200">
+                        <h3 class="skills-title">Core Technical Arsenal</h3>
+                        
+                        <div class="skills-category">
+                            <h4>Frontend Architecture</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag"><i data-lucide="html5" class="skill-icon"></i> HTML5 / CSS3</span>
+                                <span class="skill-tag"><i data-lucide="code-2" class="skill-icon"></i> Javascript (ES6+)</span>
+                                <span class="skill-tag"><i data-lucide="layers" class="skill-icon"></i> React / Next.js</span>
+                                <span class="skill-tag"><i data-lucide="smartphone" class="skill-icon"></i> Responsive Design</span>
+                                <span class="skill-tag"><i data-lucide="palette" class="skill-icon"></i> Modern Animation (Framer)</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-category">
+                            <h4>Backend & Databases</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag"><i data-lucide="server" class="skill-icon"></i> Node.js / Express</span>
+                                <span class="skill-tag"><i data-lucide="database" class="skill-icon"></i> PostgreSQL / MongoDB</span>
+                                <span class="skill-tag"><i data-lucide="terminal" class="skill-icon"></i> REST & GraphQL APIs</span>
+                                <span class="skill-tag"><i data-lucide="shield" class="skill-icon"></i> JWT / OAuth Auth</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-category">
+                            <h4>Tools & DevOps</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag"><i data-lucide="git-branch" class="skill-icon"></i> Git & GitHub</span>
+                                <span class="skill-tag"><i data-lucide="cloud" class="skill-icon"></i> AWS / Vercel</span>
+                                <span class="skill-tag"><i data-lucide="cpu" class="skill-icon"></i> Docker Containers</span>
+                                <span class="skill-tag"><i data-lucide="workflow" class="skill-icon"></i> Agile / Scrum</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience-section section-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag">Career Milestones</span>
+                    <h2 class="section-title">Experience & Journey</h2>
+                    <p class="section-description">A chronicle of my professional growth, key roles, and educational background.</p>
+                </div>
+                
+                <div class="timeline">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item fade-in-up">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">June 2025 - Present</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-role">Lead Full-Stack Developer</h3>
+                            <h4 class="timeline-company">Helix Tech Solutions</h4>
+                            <p class="timeline-description">
+                                Heading the development of enterprise web solutions. Overhauling legacy user panels using modern CSS Grid architectures, improving site load times by 40%, and designing complex responsive tables and dashboards for global clients.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item fade-in-up delay-200">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">Jan 2024 - May 2025</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-role">Junior Frontend Engineer</h3>
+                            <h4 class="timeline-company">Aura Digital Labs</h4>
+                            <p class="timeline-description">
+                                Developed responsive landing pages, high-fidelity UI animations, and component library integrations. Managed theme architectures incorporating dynamic CSS Custom Properties for seamless brand switching.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item fade-in-up delay-400">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2021 - 2024</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-role">B.S. in Computer Science & Engineering</h3>
+                            <h4 class="timeline-company">Technical University</h4>
+                            <p class="timeline-description">
+                                Graduated with honors. Deepened core knowledge in algorithmic complexity, database optimization, advanced software architectures, and interface accessibility standards.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid Section -->
+        <section id="projects" class="projects-section section-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag">My Work</span>
+                    <h2 class="section-title">Selected Projects</h2>
+                    <p class="section-description">Explore a curated gallery of web apps demonstrating sophisticated layouts and interactive UI elements.</p>
+                </div>
+                
+                <!-- Projects CSS Grid -->
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <article class="project-card fade-in-up">
+                        <div class="project-image-container">
+                            <div class="project-placeholder-img p-gradient-1">
+                                <i data-lucide="layout-grid" class="project-placeholder-icon"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link-btn" aria-label="View Github Code" title="Github Repository">
+                                        <i data-lucide="github"></i>
+                                    </a>
+                                    <a href="#" class="project-link-btn" aria-label="View Live Website" title="Live Demo">
+                                        <i data-lucide="external-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">NeuroSync - Dashboard</h3>
+                            <p class="project-description">
+                                A high-performance analytics platform displaying AI training progress. Uses complex CSS Grid structures, custom properties for instant styling, and micro-animations for real-time graphs.
+                            </p>
+                            <div class="project-tags">
+                                <span class="p-tag">React</span>
+                                <span class="p-tag">CSS Grid</span>
+                                <span class="p-tag">Chart.js</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-card fade-in-up delay-200">
+                        <div class="project-image-container">
+                            <div class="project-placeholder-img p-gradient-2">
+                                <i data-lucide="shopping-cart" class="project-placeholder-icon"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link-btn" aria-label="View Github Code" title="Github Repository">
+                                        <i data-lucide="github"></i>
+                                    </a>
+                                    <a href="#" class="project-link-btn" aria-label="View Live Website" title="Live Demo">
+                                        <i data-lucide="external-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Aether Cart - E-Commerce</h3>
+                            <p class="project-description">
+                                A modern store experience. Built with a mobile-first responsive layout, grid card listings, and sophisticated flexbox alignment for payment, filters, and checkout overlays.
+                            </p>
+                            <div class="project-tags">
+                                <span class="p-tag">Next.js</span>
+                                <span class="p-tag">Stripe</span>
+                                <span class="p-tag">Flexbox</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-card fade-in-up delay-400">
+                        <div class="project-image-container">
+                            <div class="project-placeholder-img p-gradient-3">
+                                <i data-lucide="music" class="project-placeholder-icon"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link-btn" aria-label="View Github Code" title="Github Repository">
+                                        <i data-lucide="github"></i>
+                                    </a>
+                                    <a href="#" class="project-link-btn" aria-label="View Live Website" title="Live Demo">
+                                        <i data-lucide="external-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Solis Audio - Streaming</h3>
+                            <p class="project-description">
+                                Seamless audio streaming visual interface. Incorporates glassmorphic layout filters, elegant gradients, custom dark theme, and fully customizable controls.
+                            </p>
+                            <div class="project-tags">
+                                <span class="p-tag">Node.js</span>
+                                <span class="p-tag">CSS Custom Properties</span>
+                                <span class="p-tag">Web Audio API</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag">Let's Connect</span>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-description">Feel free to drop a message or follow me. I will reply to you as soon as possible!</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <!-- Contact Cards -->
+                    <div class="contact-info-cards fade-in-up">
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <h3>Email Me</h3>
+                                <a href="mailto:purushotham.j@example.com">purushotham.j@example.com</a>
+                                <p>Available for freelance & consulting</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <h3>Location</h3>
+                                <p>Chennai, India</p>
+                                <p>Open to remote & hybrid roles</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <i data-lucide="message-square"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <h3>Socials</h3>
+                                <div class="social-links-flex">
+                                    <a href="#" aria-label="LinkedIn Profile" class="social-link"><i data-lucide="linkedin"></i></a>
+                                    <a href="#" aria-label="GitHub Profile" class="social-link"><i data-lucide="github"></i></a>
+                                    <a href="#" aria-label="Twitter Profile" class="social-link"><i data-lucide="twitter"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-container fade-in-up delay-200">
+                        <form id="contact-form" class="contact-form" novalidate>
+                            <div class="form-row-grid">
+                                <div class="form-group">
+                                    <label for="form-name">Name</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="form-name" name="name" placeholder="John Doe" required>
+                                        <span class="error-msg" id="name-error">Please enter your name</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="form-email">Email</label>
+                                    <div class="input-wrapper">
+                                        <input type="email" id="form-email" name="email" placeholder="john@example.com" required>
+                                        <span class="error-msg" id="email-error">Please enter a valid email</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-subject">Subject</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="form-subject" name="subject" placeholder="Project Inquiry" required>
+                                    <span class="error-msg" id="subject-error">Please enter a subject</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-message">Message</label>
+                                <div class="input-wrapper">
+                                    <textarea id="form-message" name="message" rows="6" placeholder="Hi Purushotham, I'd love to chat about..." required></textarea>
+                                    <span class="error-msg" id="message-error">Please enter your message</span>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                <span>Send Message</span>
+                                <i data-lucide="send" class="btn-icon"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p class="copyright">&copy; 2026 Purushotham J. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#hero">Privacy Policy</a></li>
+                <li><a href="#hero">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
