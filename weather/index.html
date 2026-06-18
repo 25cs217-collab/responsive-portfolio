@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkySync | Real-Time Weather Dashboard</title>
+    <meta name="description" content="A real-time weather dashboard fetching live metrics using asynchronous JavaScript, featuring geocoding search, unit conversion, and 5-day forecasts.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-background" id="app-background">
+        <!-- Dynanically adjusted overlay -->
+        <div class="bg-gradient-overlay"></div>
+    </div>
+
+    <!-- Main App Container -->
+    <main class="weather-container">
+        <!-- App Header -->
+        <header class="app-header">
+            <div class="logo-wrapper">
+                <div class="logo-icon">
+                    <i data-lucide="cloud-sun"></i>
+                </div>
+                <div>
+                    <h1 class="app-title">SkySync</h1>
+                    <p class="app-subtitle">Real-Time Weather Intelligence</p>
+                </div>
+            </div>
+            
+            <!-- Unit Conversion Switcher -->
+            <div class="unit-toggle-wrapper">
+                <span class="unit-label">Temp Unit</span>
+                <div class="toggle-btn-group">
+                    <button id="unit-c-btn" class="unit-btn active" aria-label="Celsius">°C</button>
+                    <button id="unit-f-btn" class="unit-btn" aria-label="Fahrenheit">°F</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Card -->
+        <section class="search-card">
+            <form id="search-form" class="search-form" novalidate>
+                <div class="search-box">
+                    <i data-lucide="map-pin" class="pin-icon"></i>
+                    <input type="text" id="city-input" placeholder="Search city (e.g., Chennai, New York, Tokyo)..." required>
+                    <button type="submit" class="search-submit-btn" aria-label="Search">
+                        <i data-lucide="search"></i>
+                    </button>
+                </div>
+                <button type="button" id="geolocation-btn" class="geo-btn" title="Use current location" aria-label="Use current location">
+                    <i data-lucide="navigation"></i>
+                    <span>GPS</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- Error Card -->
+        <div class="error-card" id="error-card" aria-live="assertive">
+            <div class="error-icon-wrapper">
+                <i data-lucide="alert-triangle"></i>
+            </div>
+            <div class="error-details">
+                <h3 class="error-title">Request Failed</h3>
+                <p class="error-message" id="error-message">Unable to fetch weather data for the specified location.</p>
+            </div>
+            <button id="close-error-btn" class="close-error-btn" aria-label="Dismiss alert">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <!-- Loading Skeleton Screen -->
+        <div class="loading-skeleton" id="loading-skeleton">
+            <div class="skeleton-header">
+                <div class="skeleton-text skeleton-title-pulse"></div>
+                <div class="skeleton-text skeleton-subtitle-pulse"></div>
+            </div>
+            <div class="skeleton-body">
+                <div class="skeleton-circle pulse"></div>
+                <div class="skeleton-text skeleton-temp-pulse"></div>
+            </div>
+            <div class="skeleton-grid">
+                <div class="skeleton-item pulse"></div>
+                <div class="skeleton-item pulse"></div>
+                <div class="skeleton-item pulse"></div>
+                <div class="skeleton-item pulse"></div>
+            </div>
+        </div>
+
+        <!-- Dashboard Dashboard Panels (Dynamically revealed) -->
+        <section class="weather-dashboard" id="weather-dashboard">
+            <!-- Current Weather Card -->
+            <div class="current-weather-card">
+                <div class="weather-main-info">
+                    <div class="weather-location-details">
+                        <h2 class="location-name" id="location-name">London, GB</h2>
+                        <p class="local-time" id="local-time">Monday, 12:00 PM</p>
+                    </div>
+                    
+                    <div class="weather-condition-display">
+                        <div class="weather-large-icon" id="weather-large-icon">
+                            <i data-lucide="sun" class="glowing-icon"></i>
+                        </div>
+                        <div class="temp-condition-wrapper">
+                            <span class="main-temperature" id="main-temperature">24°</span>
+                            <span class="weather-description" id="weather-description">Clear Sky</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Weather Info Grid -->
+                <div class="weather-details-grid">
+                    <div class="detail-card">
+                        <div class="detail-icon"><i data-lucide="thermometer"></i></div>
+                        <div class="detail-info">
+                            <span class="detail-label">Feels Like</span>
+                            <span class="detail-value" id="val-feels-like">26°C</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon"><i data-lucide="droplet"></i></div>
+                        <div class="detail-info">
+                            <span class="detail-label">Humidity</span>
+                            <span class="detail-value" id="val-humidity">64%</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon"><i data-lucide="wind"></i></div>
+                        <div class="detail-info">
+                            <span class="detail-label">Wind Speed</span>
+                            <span class="detail-value" id="val-wind">12 km/h</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon"><i data-lucide="cloud-rain"></i></div>
+                        <div class="detail-info">
+                            <span class="detail-label">Precipitation</span>
+                            <span class="detail-value" id="val-precipitation">0.0 mm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forecast Card (Grid Layout) -->
+            <div class="forecast-panel">
+                <h3 class="forecast-title">5-Day Daily Forecast</h3>
+                <div class="forecast-grid" id="forecast-grid">
+                    <!-- Forecast items will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to Portfolio link -->
+        <div class="back-link-wrapper">
+            <a href="../index.html" class="back-link">
+                <i data-lucide="arrow-left"></i>
+                <span>Back to Developer Portfolio</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
