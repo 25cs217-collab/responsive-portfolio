@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AetherShop | Premium Modular Storefront</title>
+    <meta name="description" content="A production-ready client-side routed E-commerce storefront demonstrating modular architecture, async REST API data fetching, and state-driven carts.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-background">
+        <div class="bg-glow glow-1"></div>
+        <div class="bg-glow glow-2"></div>
+    </div>
+
+    <!-- Global Header -->
+    <header class="global-header" id="global-header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="#home" class="logo" aria-label="AetherShop - Home">
+                <span class="logo-icon-wrapper"><i data-lucide="shopping-bag"></i></span>
+                <span class="logo-text">Aether<span class="logo-accent">Shop</span></span>
+            </a>
+            
+            <!-- Desktop Navigation Menu -->
+            <nav class="desktop-nav" aria-label="Primary Navigation">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active" data-route="home">Home</a></li>
+                    <li><a href="#shop" class="nav-link" data-route="shop">Shop Catalog</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Actions (Cart & Mobile Toggle) -->
+            <div class="header-actions">
+                <!-- Cart Button -->
+                <a href="#cart" class="cart-btn" id="header-cart-btn" aria-label="View shopping cart">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-dropdown" aria-label="Toggle navigation menu">
+                    <i data-lucide="menu" class="menu-icon"></i>
+                    <i data-lucide="x" class="close-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <nav class="mobile-dropdown" id="mobile-dropdown" aria-label="Mobile Navigation">
+            <ul class="mobile-nav-list">
+                <li><a href="#home" class="mobile-nav-link active" data-route="home"><i data-lucide="home"></i> Home</a></li>
+                <li><a href="#shop" class="mobile-nav-link" data-route="shop"><i data-lucide="grid"></i> Shop Catalog</a></li>
+                <li><a href="#cart" class="mobile-nav-link" data-route="cart"><i data-lucide="shopping-cart"></i> My Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Dynamic Application View Mount Point -->
+    <main class="app-main" id="app">
+        <!-- Rendered modular pages will be injected here -->
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="logo">
+                    <span class="logo-icon-wrapper"><i data-lucide="shopping-bag"></i></span>
+                    <span class="logo-text">Aether<span class="logo-accent">Shop</span></span>
+                </a>
+                <p class="footer-brand-desc">A premium modular E-commerce catalog platform designed for maximum speed and fluid interactive design.</p>
+            </div>
+            
+            <div class="footer-links-grid">
+                <div class="footer-col">
+                    <h4>Catalog</h4>
+                    <ul>
+                        <li><a href="#shop?category=electronics">Electronics</a></li>
+                        <li><a href="#shop?category=jewelery">Jewelry</a></li>
+                        <li><a href="#shop?category=men's clothing">Men's Clothing</a></li>
+                        <li><a href="#shop?category=women's clothing">Women's Clothing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Customer Support</h4>
+                    <ul>
+                        <li><a href="#home">FAQ</a></li>
+                        <li><a href="#home">Shipping Policy</a></li>
+                        <li><a href="#home">Returns & Refunds</a></li>
+                        <li><a href="#home">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p class="copyright">&copy; 2026 AetherShop. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="GitHub"><i data-lucide="github"></i></a>
+                    <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Scripts (Views first, then App logic) -->
+    <script src="views.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
